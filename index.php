@@ -6,7 +6,7 @@ require "config_php/init.php"
 <head>
     <?php require "htmlElements/head_config.php" ?>
 </head>
-<body>
+<body class="min-h-screen bg-<?= COLOR_THEME_TW ?>-100">
     <?php
     // echo "<pre>SESSION :";
     // var_dump($_SESSION);
