@@ -1,6 +1,6 @@
 <?php
 namespace Animaux;
-class Aigles extends Animaux
+class Aigle extends Animal
 {
 
     public function __construct(){

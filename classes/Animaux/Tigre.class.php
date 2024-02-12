@@ -1,6 +1,6 @@
 <?php
 namespace Animaux;
-class Tigres extends Animaux 
+class Tigre extends Animal 
 {
 
 
