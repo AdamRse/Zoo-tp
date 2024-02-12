@@ -1,4 +1,6 @@
 <?php
+namespace Animaux;
+
 class Animaux
 {
     protected int $_id;
@@ -92,3 +94,4 @@ class Animaux
         $this->_malade = $_malade;
     }
 }
+

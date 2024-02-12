@@ -1,5 +1,6 @@
 <?php
 function autoloading($class){
-    require P_ROOT."classes/$class.class.php";
+    $path = P_ROOT."/classes/".str_replace('\\', '/', $class).".class.php";
+    require $path;
 }
 spl_autoload_register("autoloading");
