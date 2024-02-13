@@ -13,7 +13,13 @@ class Animal
     protected bool $_dort = false;
     protected bool $_malade = false;
     protected string $_crie;
-
+    
+    public function __construct($i,$p,$t)
+    {
+        $this->_id = $i;
+        $this->_poids = $p ;
+        $this->_taille = $t;
+    }
     public function manger()
     {
         $retour = "";
@@ -137,6 +143,11 @@ class Animal
     public function setId($_id)
     {
         $this->_id = $_id;
+    }
+
+    public function setName($_name)
+    {
+        $this->_name = $_name;
     }
     public function setAge($_age)
     {
