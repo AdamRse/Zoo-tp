@@ -5,7 +5,12 @@ class Employe
     protected string $_name;
     protected int $_age;
     protected string $_sexe;
-
+    public function __construct($i, $n, $s)
+    {
+        $this->_id = $i;
+        $this->_name = $n ;
+        $this->_sexe = $s;
+    }
     public function Nettoyer ($enclos)
     {
         $enclos->clear();
