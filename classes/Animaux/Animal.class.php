@@ -17,7 +17,7 @@ class Animal
     public function __construct($i,$p,$t)
     {
         $this->_id = $i;
-        $this->_poids = $p ;
+        $this->_poids = $p;
         $this->_taille = $t;
     }
     public function manger()
