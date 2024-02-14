@@ -12,3 +12,4 @@ ini_set("error_append_string ", "</pre>");
 require "const.php";
 require "autoload.php";
 require "db.php";
+require "connect.php";
