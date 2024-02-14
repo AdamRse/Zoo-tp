@@ -11,3 +11,4 @@ ini_set("error_append_string ", "</pre>");
 //requires
 require "const.php";
 require "autoload.php";
+require "db.php";

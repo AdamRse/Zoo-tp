@@ -28,6 +28,8 @@ require "config_php/init.php"
                 $js[] = $getJs;// Si oui on le passe au tableau js qui l'executera dans le footer (./htmlElements/footer.php)
         }
     }
+    else
+        $js[] = './js/accueil.js';
 
     include $section;// On execute le code de la section demmandée et vérifiée
 
