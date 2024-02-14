@@ -1,5 +1,8 @@
 <?php
 namespace Enclos;
+
+use Animaux\Animal;
+
 class Enclos
 {
     protected int $_id;
@@ -31,13 +34,25 @@ class Enclos
         }
         return $retour;
     }
-    public function AddAninal()
+    public function AddAninal(Animal $animaux)
     {
-
+        if (sizeof($this->_animal) < $this->_maxAnimaux) 
+        {
+            $this->_animal[] = $animaux;          
+        }
+        
     }
-    public function DeleteAnimal()
+    public function DeleteAnimal(Animal $animal)
     {
-
+        //$animal->getId();
+        foreach ($this->_animal as $offset => $animal1  ) {
+           if ($animal->getId() == $animal1->getId()) 
+           {
+                array_splice($this->_animal, $offset, 1);
+           } 
+            
+        }
+        
     }
     public function ClearEnclos()
     {
