@@ -5,18 +5,31 @@ class Enclos
     protected int $_id;
     protected bool $_proprete = true;
     protected int $_maxAnimaux = 6;
-    protected array $_especeAnimal;
+    protected array $_animal = [];
 
     public function CaracteristqueEnclos()
     {
-        $retour = "$this->_maxAnimaux";
-        $retour = "$this->_proprete";
-        $retour = "$this->_especeAnimal";
+        $retour = "Enclos n° $this->_id : ";
+        $retour .= ($this->_proprete) ? "Propre" : "A nettoyer";
+        $retour .= ". Polulation : ".sizeof($this->_animal)."/$this->_maxAnimaux";
         return $retour;
     }
     public function CaracteristqueAnimaux()
     {
-
+        $retour = "Liste des annimaux dans l'enclos $this->_id : ";
+        foreach ($this->_animal as $animal){
+            $retour .= "<table>";
+            $retour .= "<tr><td colspan='2'>".$animal->getName()."</td></tr>";
+            $retour .= "<tr><td>Taille</td><td>".$animal->getTaille()."</td></tr>";
+            $retour .= "<tr><td>Poids</td><td>".$animal->getPoids()."</td></tr>";
+            $retour .= "<tr><td>Age</td><td>".$animal->getAge()."</td></tr>";
+            $retour .= "<tr><td>Dort</td><td>".$animal->getDort()."</td></tr>";
+            $retour .= "<tr><td>Faim</td><td>".$animal->getFaim()."</td></tr>";
+            $retour .= "<tr><td>Malade</td><td>".$animal->getMalade()."</td></tr>";
+            $retour .= "<tr><td>Crie</td><td>".$animal->getCrie()."</td></tr>";
+            $retour .= "</table>";
+        }
+        return $retour;
     }
     public function AddAninal()
     {
@@ -57,7 +70,7 @@ class Enclos
     }
     public function getAnimal()
     {
-        return $this->_especeAnimal;
+        return $this->_animal;
     }
 
     // SETTER
@@ -73,8 +86,8 @@ class Enclos
     {
         $this->_maxAnimaux = $_maxAnimaux;
     }
-    public function setAnimal($_especeAnimal)
+    public function setAnimal($_animal)
     {
-        $this->_especeAnimal = $_especeAnimal;
+        $this->_animal = $_animal;
     }
 }
