@@ -5,11 +5,18 @@ class Employe
     protected string $_name;
     protected int $_age;
     protected string $_sexe;
-    public function __construct($i, $n, $s)
-    {
-        $this->_id = $i;
-        $this->_name = $n ;
-        $this->_sexe = $s;
+    public function __construct($hydrate = false){
+        if(!empty($hydrate) && is_array($hydrate)){
+            $this->hydrate($hydrate);
+        }
+    }
+    public function hydrate($tab){
+        foreach ($tab as $attribut => $value) {
+            $method = 'set'.ucfirst($attribut);
+            if(is_callable(array($this, $method))) {
+                $this->$method($value);
+            }
+        }
     }
     public function Nettoyer ($enclos)
     {
