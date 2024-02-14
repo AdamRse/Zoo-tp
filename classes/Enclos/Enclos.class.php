@@ -3,13 +3,16 @@ namespace Enclos;
 class Enclos
 {
     protected int $_id;
-    protected int $proprete;
-    protected int $_number;
-    protected array $_animal;
+    protected bool $_proprete = true;
+    protected int $_maxAnimaux = 6;
+    protected array $_especeAnimal;
 
     public function CaracteristqueEnclos()
     {
-
+        $retour = "$this->_maxAnimaux";
+        $retour = "$this->_proprete";
+        $retour = "$this->_especeAnimal";
+        return $retour;
     }
     public function CaracteristqueAnimaux()
     {
@@ -25,8 +28,18 @@ class Enclos
     }
     public function ClearEnclos()
     {
-
+        if ($this->_proprete) 
+        {    
+            $retour = "L'enclos est déja propre";
+        }
+        else
+        {
+            $retour = "L'enclos viens d'etre nettoyé";
+            $this->_proprete = true;
+        }
+        return $retour;
     }
+    
     
     
     // GETTER
@@ -34,17 +47,17 @@ class Enclos
     {
         return $this->_id;
     }
-    public function getPropreter()
+    public function getPropete()
     {
-        return $this->proprete;
+        return $this->_proprete;
     }
-    public function getNumber()
+    public function getMaxAnimaux()
     {
-        return $this->_number;
+        return $this->_maxAnimaux;
     }
     public function getAnimal()
     {
-        return $this->_animal;
+        return $this->_especeAnimal;
     }
 
     // SETTER
@@ -52,16 +65,16 @@ class Enclos
     {
         $this->_id = $_id;
     }
-    public function setPropreter($proprete)
+    public function setPropete($_proprete)
     {
-        $this->proprete = $proprete;
+        $this->_proprete = $_proprete;
     }
-    public function setNumber($_number)
+    public function setMaxAnimaux($_maxAnimaux)
     {
-        $this->_number = $_number;
+        $this->_maxAnimaux = $_maxAnimaux;
     }
-    public function setAnimal($_animal)
+    public function setAnimal($_especeAnimal)
     {
-        $this->_animal = $_animal;
+        $this->_especeAnimal = $_especeAnimal;
     }
 }
