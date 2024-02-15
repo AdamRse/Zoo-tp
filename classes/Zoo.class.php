@@ -1,4 +1,7 @@
 <?php
+use Animaux\Animal;
+use Enclos\Enclos;
+use Employe\Employe;
 class Zoo {
 
     private const enclosMax = 10;
@@ -7,6 +10,22 @@ class Zoo {
     protected $_entry_price;
     protected array $_employes = [];
     protected array $_enclos = [];
+
+    public function AffichageContenueEnclos($enclos)
+    {
+        $enclos->CaracteristqueEnclos();
+    }
+    public function AffichageAnimauxZoo($enclos)
+    {
+        $enclos->CaracteristqueAnimaux();
+    }
+    public function main(Animal $animal, Enclos $enclos, Employe $employe)
+    {
+        while ($this->$animal) {
+            
+        }
+
+    }
 
     protected $_enclosPosition = array(
         [5, 35]
