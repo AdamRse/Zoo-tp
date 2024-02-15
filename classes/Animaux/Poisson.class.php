@@ -8,6 +8,9 @@ class Poisson extends Animal
         $this->setName("Poisson");
         $this->setCrie("rote");
     }
-
+    public function Nager()
+    {
+        $retour = "$this->_name est entain de nager";
+        return $retour;
+    } 
 }
-

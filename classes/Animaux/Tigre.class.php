@@ -8,5 +8,9 @@ class Tigre extends Animal
         $this->setName("Tigre");
         $this->setCrie("rugis");
     }
-
+    public function Vagabonder()
+    {
+        $retour = "$this->_name est entain de vagabonder";
+        return $retour;
+    }
 }
