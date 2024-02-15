@@ -10,6 +10,12 @@ class Enclos
     protected int $_maxAnimaux = 6;
     protected array $_animal = [];
 
+    public function __construct($_id, $_proprete) {
+        $this->_id = $_id;
+        $this->_proprete = $_proprete;
+        $this->_animal = 0;
+    }
+
     public function CaracteristqueEnclos()
     {
         $retour = "Enclos n° $this->_id : ";
@@ -67,6 +73,7 @@ class Enclos
         }
         return $retour;
     }
+   
     
     
     

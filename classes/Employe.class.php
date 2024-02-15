@@ -20,7 +20,7 @@ class Employe
     }
     public function Nettoyer ($enclos)
     {
-        $enclos->clear();
+        $enclos->ClearEnclos();
     }
     public function Nourrir($animal)
     {
@@ -28,11 +28,11 @@ class Employe
     }
     public function Ajouter ($enclos)
     {
-        $enclos->add();
+        $enclos->AddAnimal();
     }
     public function Supprimer ($enclos)
     {
-        $enclos->delete();
+        $enclos->DeleteAnimal();
     }
     public function Transfert ($enclos)
     {
