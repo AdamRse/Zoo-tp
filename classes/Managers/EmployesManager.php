@@ -1,7 +1,7 @@
 <?php
 namespace Managers;
 use \PDO;
-use \Employe;
+use Employe\Employe;
 class Employes{
     protected PDO $_db;
 

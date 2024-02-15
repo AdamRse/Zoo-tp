@@ -1,4 +1,7 @@
 <?php
+namespace Employe ;
+use Animaux\Animal;
+use Enclos\Enclos;
 class Employe
 {
     protected int $_id;
@@ -34,9 +37,10 @@ class Employe
     {
         $enclos->DeleteAnimal();
     }
-    public function Transfert ($enclos)
+    public function Transfert (Enclos $enclos, Animal $animal)
     {
-        $enclos->move();
+        $enclos->DeleteAnimal($animal);
+        $enclos->AddAnimal($animal);
     }
 
     // GETTER

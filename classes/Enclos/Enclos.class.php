@@ -40,7 +40,7 @@ class Enclos
         }
         return $retour;
     }
-    public function AddAninal(Animal $animaux)
+    public function AddAnimal(Animal $animaux)
     {
         if (sizeof($this->_animal) < $this->_maxAnimaux) 
         {
