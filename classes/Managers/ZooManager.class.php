@@ -14,5 +14,12 @@ class ZooManager{
         $q->execute([$id]);
         return new Zoo($q->fetch(PDO::FETCH_ASSOC));
     }
-
+    public function getAllZoo(){
+        $zoos = [];
+        $q = $this->_db->query('SELECT * FROM zoo');
+        while($zoo = $q->fetch(PDO::FETCH_ASSOC)){
+            $zoos[] = new Zoo($zoo);
+        }
+        return $zoos;
+    }
 }

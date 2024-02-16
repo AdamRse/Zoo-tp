@@ -4,5 +4,8 @@
             <img src="./images/icon.png" class="max-h-10 mr-2" />
             <span>Anthropocene Park</span>
         </div>
+        <div>
+            <a href="?dc">Log out</a>
+        </div>
     </nav>
 </header>
