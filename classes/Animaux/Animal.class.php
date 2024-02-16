@@ -20,6 +20,14 @@ class Animal
         $this->_poids = $p;
         $this->_taille = $t;
     }
+    public function hydrate($tab){
+        foreach ($tab as $attribut => $value) {
+            $method = 'set'.ucfirst($attribut);
+            if(is_callable(array($this, $method))) {
+                $this->$method($value);
+            }
+        }
+    }
     public function manger()
     {
         $retour = "";

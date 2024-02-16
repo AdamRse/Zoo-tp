@@ -65,7 +65,7 @@ class Zoo {
     }
     public function main(Animal $animal, Enclos $enclos, Employe $employe)
     {
-        while ($this->$animal) {
+        while ($animal && $enclos && $employe ) {
             
         }
 
