@@ -10,23 +10,7 @@ class Zoo {
     protected $_entry_price;
     protected array $_employes = [];
     protected array $_enclos = [];
-
-    public function AffichageContenueEnclos($enclos)
-    {
-        $enclos->CaracteristqueEnclos();
-    }
-    public function AffichageAnimauxZoo($enclos)
-    {
-        $enclos->CaracteristqueAnimaux();
-    }
-    public function main(Animal $animal, Enclos $enclos, Employe $employe)
-    {
-        while ($this->$animal) {
-            
-        }
-
-    }
-
+    
     protected $_enclosPosition = array(
         [5, 35]
         ,[10, 31]
@@ -69,7 +53,23 @@ class Zoo {
         ,[46, 61]
         ,[44, 76]
     );
+    
 
+    public function AffichageContenueEnclos($enclos)
+    {
+        return $enclos->CaracteristqueEnclos();
+    }
+    public function AffichageAnimauxZoo($enclos)
+    {
+        return $enclos->CaracteristqueAnimaux();
+    }
+    public function main(Animal $animal, Enclos $enclos, Employe $employe)
+    {
+        while ($this->$animal) {
+            
+        }
+
+    }
     public function __construct($hydrate = false){
         if(!empty($hydrate) && is_array($hydrate)){
             $this->hydrate($hydrate);
