@@ -10,50 +10,6 @@ class Zoo {
     protected $_entry_price;
     protected array $_employes = [];
     protected array $_enclos = [];
-    
-    protected $_enclosPosition = array(
-        [5, 35]
-        ,[10, 31]
-        ,[8, 23]
-        ,[26, 21]
-        ,[28, 37]
-        ,[42, 47]
-        ,[17, 43]
-        ,[52, 84]
-        ,[51, 20]
-        ,[42, 14]
-        ,[64, 35]
-        ,[84, 32]
-        ,[92, 44]
-        ,[27, 67]
-    );
-    protected $_volierePosition = array(
-        [51.5, 9]
-        ,[59, 9]
-        ,[41, 37]
-        ,[49, 43]
-        ,[53, 55]
-        ,[57.5, 29]
-        ,[75, 38]
-        ,[83, 48]
-        ,[71, 64]
-        ,[53, 71]
-        ,[7, 52]
-        ,[32, 59]
-        ,[17, 10]
-    );
-    protected $_aquaPosition = array(
-        [28, 49]
-        ,[19, 56]
-        ,[20, 36]
-        ,[37, 24]
-        ,[68, 25]
-        ,[57, 42]
-        ,[62, 53]
-        ,[46, 61]
-        ,[44, 76]
-    );
-    
 
     public function AffichageContenueEnclos($enclos)
     {
@@ -100,28 +56,29 @@ class Zoo {
             </div>
             <img src="/images/map.png" class="w-full top-0 left-0"/>
             <?php
-            foreach($this->_enclosPosition as $xy){
-                ?>
-                <div class="enclos inline-block absolute rounded-full shadow-2xl border cursor-pointer" style="left: <?= $xy[0] ?>%; top: <?= $xy[1] ?>%; background: center/150% url('./images/enclos.png')">
-                <div class="px-2 rounded-md text-center text-<?= COLOR_THEME_TW ?>-700 bg-<?= COLOR_THEME_TW ?>-200 mt-14">Enclos</div>
-                </div>
-                <?php
-            }
-            foreach($this->_volierePosition as $xy){
-                ?>
-                <div class="enclos inline-block absolute rounded-full shadow-2xl border cursor-pointer" style="left: <?= $xy[0] ?>%; top: <?= $xy[1] ?>%; background: center/150% url('./images/voliere.png')">
-                <div class="px-2 min-w-16 rounded-md text-center text-<?= COLOR_THEME_TW ?>-700 bg-<?= COLOR_THEME_TW ?>-200 mt-14">Volière</div>
-                </div>
-                <?php
-            }
-            foreach($this->_aquaPosition as $xy){
-                ?>
-                <div class="text-center enclos inline-block absolute rounded-full shadow-2xl border cursor-pointer" style="left: <?= $xy[0] ?>%; top: <?= $xy[1] ?>%; background: center/150% url('./images/aquarium.png')">
+            foreach($this->_enclos as $enclos){
+                if($enclos->getType() == "enclos"){
+                    ?>
+                    <div class="enclos inline-block absolute rounded-full shadow-2xl border cursor-pointer" style="left: <?= $enclos->getPosX() ?>%; top: <?= $enclos->getPosY() ?>%; background: center/150% url('./images/enclos.png')">
+                    <div class="px-2 rounded-md text-center text-<?= COLOR_THEME_TW ?>-700 bg-<?= COLOR_THEME_TW ?>-200 mt-14">Enclos</div>
+                    </div>
+                    <?php
+                }
+                elseif($enclos->getType() == "voliere"){
+                    ?>
+                    <div class="enclos inline-block absolute rounded-full shadow-2xl border cursor-pointer" style="left: <?= $enclos->getPosX() ?>%; top: <?= $enclos->getPosY() ?>%; background: center/150% url('./images/voliere.png')">
+                    <div class="px-2 min-w-16 rounded-md text-center text-<?= COLOR_THEME_TW ?>-700 bg-<?= COLOR_THEME_TW ?>-200 mt-14">Volière</div>
+                    </div>
+                    <?php
+                }
+                else{
+                    ?>
+                    <div class="text-center enclos inline-block absolute rounded-full shadow-2xl border cursor-pointer" style="left: <?= $enclos->getPosX() ?>%; top: <?= $enclos->getPosY() ?>%; background: center/150% url('./images/aquarium.png')">
                     <div class="px-2 min-w-24 rounded-md text-center text-<?= COLOR_THEME_TW ?>-700 bg-<?= COLOR_THEME_TW ?>-200 mt-14">Aquarium</div>
-                </div>
+                    </div>
                 <?php
+                }
             }
-
             ?>
         </div>
         <?php
