@@ -22,7 +22,7 @@ class Zoo {
     public function main(Animal $animal, Enclos $enclos, Employe $employe)
     {
         while ($animal && $enclos && $employe ) {
-            
+  
         }
 
     }
