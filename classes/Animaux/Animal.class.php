@@ -14,11 +14,10 @@ class Animal
     protected bool $_malade = false;
     protected string $_crie;
     
-    public function __construct($i,$p,$t)
+    public function __construct(array $hydrate = [])
     {
-        $this->_id = $i;
-        $this->_poids = $p;
-        $this->_taille = $t;
+        if(!empty($hydrate))
+            $this->hydrate($hydrate);
     }
     public function hydrate($tab){
         foreach ($tab as $attribut => $value) {

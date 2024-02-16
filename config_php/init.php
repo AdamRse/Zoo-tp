@@ -9,7 +9,7 @@ ini_set("error_prepend_string", "<pre style='color: #333; font-family:monospace;
 ini_set("error_append_string ", "</pre>");
 
 //requires
-require "const.php";
-require "autoload.php";
 require "db.php";
-require "connect.php";
+require "autoload.php";
+require "connect.php"; //Require db.php et autoload.php
+require "const.php";

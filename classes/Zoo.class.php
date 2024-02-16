@@ -10,6 +10,7 @@ class Zoo {
     protected $_entry_price;
     protected array $_employes = [];
     protected array $_enclos = [];
+    protected $_owner;
 
     public function AffichageContenueEnclos($enclos)
     {
@@ -39,49 +40,8 @@ class Zoo {
             }
         }
     }
-    public function afficherMap(){
-        ?>
-        <div class="relative inline-block w-full overflow-hidden select-none">
-            <div class="absolute pt-5 pl-7">
-                <i id="btMenu" class="p-2 cursor-pointer shadow-<?= COLOR_THEME_TW ?>-700 fa-solid fa-bars text-<?= COLOR_THEME_TW ?>-700 fa-2x"></i>
-                <i id="btStats" class="p-2 cursor-pointer fa-regular fa-compass text-<?= COLOR_THEME_TW ?>-700 fa-2x"></i>
-            </div>
-            <div class="absolute mt-20 flex justify-center">
-                <div id="divMenuMap" class="hidden ml-5 p-5 text-<?= COLOR_THEME_TW ?>-700 border-2 border-<?= COLOR_THEME_TW ?>-700 bg-<?= COLOR_THEME_TW ?>-200 rounded-lg">
-                    Menu
-                </div>
-                <div id="divStatMap" class="hidden ml-5 p-5 text-<?= COLOR_THEME_TW ?>-700 border-2 border-<?= COLOR_THEME_TW ?>-700 bg-<?= COLOR_THEME_TW ?>-200 rounded-lg">
-                    Status
-                </div>
-            </div>
-            <img src="/images/map.png" class="w-full top-0 left-0"/>
-            <?php
-            foreach($this->_enclos as $enclos){
-                if($enclos->getType() == "enclos"){
-                    ?>
-                    <div class="enclos inline-block absolute rounded-full shadow-2xl border cursor-pointer" style="left: <?= $enclos->getPosX() ?>%; top: <?= $enclos->getPosY() ?>%; background: center/150% url('./images/enclos.png')">
-                    <div class="px-2 rounded-md text-center text-<?= COLOR_THEME_TW ?>-700 bg-<?= COLOR_THEME_TW ?>-200 mt-14">Enclos</div>
-                    </div>
-                    <?php
-                }
-                elseif($enclos->getType() == "voliere"){
-                    ?>
-                    <div class="enclos inline-block absolute rounded-full shadow-2xl border cursor-pointer" style="left: <?= $enclos->getPosX() ?>%; top: <?= $enclos->getPosY() ?>%; background: center/150% url('./images/voliere.png')">
-                    <div class="px-2 min-w-16 rounded-md text-center text-<?= COLOR_THEME_TW ?>-700 bg-<?= COLOR_THEME_TW ?>-200 mt-14">Volière</div>
-                    </div>
-                    <?php
-                }
-                else{
-                    ?>
-                    <div class="text-center enclos inline-block absolute rounded-full shadow-2xl border cursor-pointer" style="left: <?= $enclos->getPosX() ?>%; top: <?= $enclos->getPosY() ?>%; background: center/150% url('./images/aquarium.png')">
-                    <div class="px-2 min-w-24 rounded-md text-center text-<?= COLOR_THEME_TW ?>-700 bg-<?= COLOR_THEME_TW ?>-200 mt-14">Aquarium</div>
-                    </div>
-                <?php
-                }
-            }
-            ?>
-        </div>
-        <?php
+    public function nbEmployes(){
+        return sizeof($this->_employes);
     }
 
     ////////GETTERS
@@ -100,6 +60,9 @@ class Zoo {
     public function getEnclos(){
         return $this->_enclos;
     }
+    public function getOwner(){
+        return $this->_owner;
+    }
 
     ////////SETTERS
     public function setId($i){
@@ -116,5 +79,8 @@ class Zoo {
     }
     public function setEnclos($e){
         $this->_enclos = $e;
+    }
+    public function setOwner($o){
+        $this->_owner = $o;
     }
 }
