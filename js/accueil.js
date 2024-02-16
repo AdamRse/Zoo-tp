@@ -7,3 +7,8 @@ document.querySelector("#btMenu").addEventListener("click", function(){
 document.querySelector("#btStats").addEventListener("click", function(){
     divStat.classList.toggle("hidden");
 });
+// Ajout
+document.querySelector('#btBuyZk').addEventListener("click", function(){
+    
+})
+console.log("Cc");
