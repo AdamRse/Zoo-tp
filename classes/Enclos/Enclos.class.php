@@ -9,11 +9,13 @@ class Enclos
     protected bool $_proprete = true;
     protected int $_maxAnimaux = 6;
     protected array $_animal = [];
+    protected $_type;
+    protected $_posX;
+    protected $_posY;
 
     public function __construct($_id, $_proprete) {
         $this->_id = $_id;
         $this->_proprete = $_proprete;
-        $this->_animal = 0;
     }
 
     public function CaracteristqueEnclos()
@@ -94,6 +96,15 @@ class Enclos
     {
         return $this->_animal;
     }
+    public function getType(){
+        return $this->_type;
+    }
+    public function getPosX(){
+        return $this->_posX;
+    }
+    public function getPosY(){
+        return $this->_posY;
+    }
 
     // SETTER
     public function setId($_id)
@@ -111,5 +122,14 @@ class Enclos
     public function setAnimal($_animal)
     {
         $this->_animal = $_animal;
+    }
+    public function setType($t){
+        $this->_type = $t;
+    }
+    public function setPosX($p){
+        $this->_posX = $p;
+    }
+    public function setPosY($p){
+        $this->_posY = $p;
     }
 }
