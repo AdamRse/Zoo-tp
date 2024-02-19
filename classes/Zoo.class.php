@@ -14,7 +14,7 @@ class Zoo {
 
     public function AffichageContenueEnclos($enclos)
     {
-        return $enclos->CaracteristqueEnclos();
+        return $enclos->CaracteristqueEnclos(); 
     }
     public function AffichageAnimauxZoo($enclos)
     {
@@ -41,6 +41,9 @@ class Zoo {
     }
     public function addEmployee(Employe $employe){
         $this->_employes[] = $employe;
+    }
+    public function addEnclos(Enclos $enclos){
+        $this->_enclos[] = $enclos;
     }
     public function exportAssoc(){
         return array(

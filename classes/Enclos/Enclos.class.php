@@ -6,18 +6,36 @@ use Animaux\Animal;
 class Enclos
 {
     protected int $_id;
-    protected bool $_proprete = true;
+    protected int $_proprete = 100;
     protected int $_maxAnimaux = 6;
     protected array $_animal = [];
-    protected $_type;
+    protected $_type = "Enclos";
     protected $_posX;
     protected $_posY;
 
-    public function __construct($_id, $_proprete) {
-        $this->_id = $_id;
-        $this->_proprete = $_proprete;
+    public function __construct(array $hydrate = [])
+    {
+        if(!empty($hydrate))
+            $this->hydrate($hydrate);
     }
-
+    public function hydrate($tab){
+        foreach ($tab as $attribut => $value) {
+            $method = 'set'.ucfirst($attribut);
+            if(is_callable(array($this, $method))) {
+                $this->$method($value);
+            }
+        }
+    }
+    public function exportAssoc(){
+        return array(
+            "id" => $this->_id
+            , "type" => $this->_type
+            , "proprete" => $this->_proprete
+            , "maxAnimaux" => $this->_maxAnimaux
+            , "posX" => $this->_posX
+            , "posY" => $this->_posY
+        );
+    }
     public function CaracteristqueEnclos()
     {
         $retour = "Enclos n° $this->_id : ";
@@ -113,6 +131,8 @@ class Enclos
     }
     public function setPropete($_proprete)
     {
+        if($_proprete<0) $_proprete = 0;
+        elseif($_proprete>100) $_proprete = 100;
         $this->_proprete = $_proprete;
     }
     public function setMaxAnimaux($_maxAnimaux)

@@ -14,7 +14,7 @@ class EmployesManager{
         $q->execute([$id]);
         return new Employe($q->fetch(PDO::FETCH_ASSOC));
     }
-    public function getEmployees(Zoo $zoo){
+    public function getBddEmployees(Zoo $zoo){
         $q = $this->_db->prepare("SELECT * FROM employe WHERE id_zoo = ?");
         $q->execute([$zoo->getId()]);
         while($e = $q->fetch(PDO::FETCH_ASSOC))

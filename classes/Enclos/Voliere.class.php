@@ -2,11 +2,11 @@
 namespace Enclos;
 class Voliere extends Enclos 
 {
-    protected $hauteur;
 
-    public function __construct($id, $proprete, $hauteur) {
-        parent::__construct($id, $proprete);
-        $this->hauteur = $hauteur;
+    public function __construct($hydrate = []) {
+        if(!empty($hydrate))
+            parent::__construct($hydrate);
+        $this->_type = "Voliere";
     }
 }
 

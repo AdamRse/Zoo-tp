@@ -1,6 +1,8 @@
 <?php
 $zooManager = new Managers\ZooManager($connexion);
 $animalManager = new Managers\AnimalManager($connexion);
+$employeManager = new \Managers\EmployesManager($connexion);
+
 $listeAnimal = $animalManager->getAnimalAvailableArray();
 $zoo = $zooManager->getZooId(ZOO);
 ?>
@@ -26,13 +28,22 @@ $zoo = $zooManager->getZooId(ZOO);
             <div>
                 <table class="w-full">
                     <tr>
-                        <td class="py-1 px-3">Money</td><td class="py-1 px-3 text-right font-bold"><?= number_format($zoo->getMoney(), 0, '.', ' ') ?>€</td>
+                        <td class="py-1 px-3">Money</td>
+                        <td class="py-1 px-3 text-right font-bold">
+                            <span id="statMoney"><?= number_format($zoo->getMoney(), 0, '.', ' ') ?></span>€
+                        </td>
                     </tr>
                     <tr>
-                        <td class="py-1 px-3">Entrance</td><td class="py-1 px-3 text-right font-bold"><?= $zoo->getEntry_price() ?>€</td>
+                        <td class="py-1 px-3">Entrance</td>
+                        <td class="py-1 px-3 text-right font-bold">
+                            <span id="statEntry"><?= $zoo->getEntry_price() ?></span>€
+                        </td>
                     </tr>
                     <tr>
-                        <td class="py-1 px-3">Employees</td><td class="py-1 px-3 text-right font-bold"><?= $zoo->nbEmployes() ?></td>
+                        <td class="py-1 px-3">Employees</td>
+                        <td class="py-1 px-3 text-right font-bold">
+                            <span id="statNbEmployes"><?= $zoo->nbEmployes() ?></span>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -80,9 +91,25 @@ $zoo = $zooManager->getZooId(ZOO);
         if($zoo->nbEmployes() > 0){
             ?>
             <div id="divStatMap" class="hidden ml-5 py-5 text-<?= COLOR_THEME_TW ?>-700 border-2 border-<?= COLOR_THEME_TW ?>-700 bg-<?= COLOR_THEME_TW ?>-200 rounded-lg">
-                <div class="px-5 py-2 text-center border-b-4 border-<?= COLOR_THEME_TW ?>-700">
+                <div class="px-5 py-2 text-xl text-center border-b-4 border-<?= COLOR_THEME_TW ?>-700">
                     Employee<?= $zoo->nbEmployes() > 1 ? "s" : "" ?> (<?= $zoo->nbEmployes() ?>)
                 </div>
+                <?php
+                foreach($zoo->getEmployes() as $employe){
+                    ?>
+                    <div class="py-1 px-5 flex justify-between border-b border-<?= COLOR_THEME_TW ?>-700">
+                        <div class="flex items-center">
+                            <img src="/images/icon/" class="w-10 mr-2" />
+                        </div>
+                        <div>
+                            <div class="text-xl font-bold"><?= $employe->getName() ?></div>
+                            <div><?= $employe->getRole() ?></div>
+                            <div><?= $employe->getExperience() > 0 ? $employe->getExperience()."xp" : "No experience" ?></div>
+                        </div>
+                    </div>
+                    <?php
+                }
+                ?>
             </div>
             <?php
         }
