@@ -22,9 +22,10 @@ class EmployesManager{
     }
     public function createEmployeeBdd(Zoo $zoo){
         $employe = new Employe();
-        $q = $this->_db->prepare("INSERT INTO employe SET name = id_zoo = :idZoo :name, age = :age, sexe = :sexe, role = :role");
+        $q = $this->_db->prepare("INSERT INTO employe (id_zoo, name, age, sexe, role) VALUES (:idZoo, :name, :age, :sexe, :role)");
         $q->execute([
             "idZoo" => $zoo->getId()
+            , "name" => $employe->getName()
             , "age" => $employe->getAge()
             , "sexe" => $employe->getSexe()
             , "role" => $employe->getRole()
