@@ -1,7 +1,7 @@
 <?php
 use Animaux\Animal;
 use Enclos\Enclos;
-use Employe\Employe;
+use Employe;
 class Zoo {
 
     private const enclosMax = 10;

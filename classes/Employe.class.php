@@ -1,5 +1,4 @@
 <?php
-namespace Employe ;
 use Animaux\Animal;
 use Enclos\Enclos;
 class Employe
