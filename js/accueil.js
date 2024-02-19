@@ -21,3 +21,21 @@ document.querySelector('#btBuyZk').addEventListener("click", function(){
     }))
    
 })
+document.querySelector('#btBuyEnclosure').addEventListener("click", function(){
+    fetch('./ajax/buyEnclosure.php')
+   
+    .then((response=>{ 
+        console.log(response);
+       
+    }))
+   
+})
+document.querySelector('#btBuyAnimal').addEventListener("click", function(){
+    fetch('./ajax/buyAnimal.php')
+   
+    .then((response=>{ 
+        console.log(response);
+       
+    }))
+   
+})

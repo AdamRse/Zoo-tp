@@ -2,7 +2,7 @@
 namespace Managers;
 use \PDO;
 use \Zoo;
-use Employe\Employe;
+use \Employe;
 class EmployesManager{
     protected PDO $_db;
 
