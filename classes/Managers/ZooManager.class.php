@@ -22,4 +22,9 @@ class ZooManager{
         }
         return $zoos;
     }
+    public function getPrices($name){
+        $q = $this->_db->prepare('SELECT cost FROM buy WHERE name = ?');
+        $q->execute([$name]);
+        return $q->fetchColumn();
+    }
 }
