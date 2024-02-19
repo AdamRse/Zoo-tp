@@ -20,13 +20,6 @@ class Zoo {
     {
         return $enclos->CaracteristqueAnimaux();
     }
-    public function main(Animal $animal, Enclos $enclos, Employe $employe)
-    {
-        while ($animal && $enclos && $employe ) {
-  
-        }
-
-    }
     public function __construct($hydrate = false){
         if(!empty($hydrate) && is_array($hydrate)){
             $this->hydrate($hydrate);
