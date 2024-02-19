@@ -43,6 +43,12 @@ class Zoo {
     public function nbEmployes(){
         return sizeof($this->_employes);
     }
+    public function pay($cost){
+        $this->_money -= $cost;
+    }
+    public function addEmployee(Employe $employe){
+        $this->_employes[] = $employe;
+    }
 
     ////////GETTERS
     public function getId(){
