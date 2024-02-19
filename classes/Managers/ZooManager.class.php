@@ -27,4 +27,8 @@ class ZooManager{
         $q->execute([$name]);
         return $q->fetchColumn();
     }
+    public function saveZoo(Zoo $zoo){
+        $q = $this->_db->prepare("UPDATE zoo SET money = :money, entry_price = :entry_price WHERE id = :id");
+        return $q->execute($zoo->exportAssoc());
+    }
 }

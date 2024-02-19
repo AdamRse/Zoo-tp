@@ -1,7 +1,6 @@
 <?php
 use Animaux\Animal;
 use Enclos\Enclos;
-use Employe\Employe;
 class Zoo {
 
     private const enclosMax = 10;
@@ -48,6 +47,13 @@ class Zoo {
     }
     public function addEmployee(Employe $employe){
         $this->_employes[] = $employe;
+    }
+    public function exportAssoc(){
+        return array(
+            "id" => $this->_id
+            , "money" => $this->_money
+            , "entry_price" => $this->_entry_price
+        );
     }
 
     ////////GETTERS

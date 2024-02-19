@@ -12,6 +12,7 @@ if(ZOO){
     if($newEmploye = $employeeManager->createEmployeeBdd($zoo)){
         $cost = $zooManager->getPrices('ZooKeeper');
         $zoo->pay($cost);
+        $zooManager->saveZoo($zoo);
         echo json_encode(array("employe" => $newEmploye->exportAssoc(), "cost" => $cost));
     }
     else
