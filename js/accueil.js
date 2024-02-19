@@ -39,7 +39,10 @@ document.querySelector('#btBuyAnimal').addEventListener("click", function(){
     }))
    
 })
-function random() {
+function random(a) {
     fetch('./classes/Animaux/Animal.class.php')
+    a.then((response =>{
+        return response.json;
+    }))
 
 }
