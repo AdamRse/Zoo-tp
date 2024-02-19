@@ -4,13 +4,16 @@ divStat = document.querySelector("#divStatMap");
 document.querySelector("#btMenu").addEventListener("click", function(){
     divMenu.classList.toggle("hidden");
 });
-document.querySelector("#btStats").addEventListener("click", function(){
-    divStat.classList.toggle("hidden");
-});
+//document.querySelector("#btStats").addEventListener("click", function(){
+   // divStat.classList.toggle("hidden");
+//});
 // Ajout
 document.querySelector('#btBuyZk').addEventListener("click", function(){
-    fetch('buyZookeeper.php')
-    .then((response=>{
-        return response.json();
+    fetch('./ajax/buyZookeeper.php')
+   
+    .then((response=>{ 
+        console.log(response);
+       
     }))
+   
 })
