@@ -9,6 +9,8 @@ document.querySelector("#btStats").addEventListener("click", function(){
 });
 // Ajout
 document.querySelector('#btBuyZk').addEventListener("click", function(){
-    
+    fetch('buyZookeeper.php')
+    .then((response=>{
+        return response.json();
+    }))
 })
-console.log("Cc");
