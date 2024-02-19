@@ -9,6 +9,7 @@ class Employe
     protected string $_sexe;
     protected $_role;
     protected $_experience;
+    protected $_img;
     public function __construct($hydrate = false){
         if(!empty($hydrate) && is_array($hydrate)){
             $this->hydrate($hydrate);
@@ -89,7 +90,9 @@ class Employe
     {
         return $this->_experience;
     }
-    
+    public function getImg(){
+        return $this->_img;
+    }
     
     // SETTER
     public function setId($_id)
@@ -116,5 +119,9 @@ class Employe
     public function setExperience($e)
     {
         $this->_experience = $e;
+    }
+    public function setImg($i)
+    {
+        $this->_img = $i;
     }
 }

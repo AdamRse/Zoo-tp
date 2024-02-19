@@ -12,7 +12,12 @@ class ZooManager{
     public function getZooId($id){
         $q = $this->_db->prepare("SELECT * FROM zoo WHERE id = ?");
         $q->execute([$id]);
-        return new Zoo($q->fetch(PDO::FETCH_ASSOC));
+        $zoo = new Zoo($q->fetch(PDO::FETCH_ASSOC));
+        $EmM = new EmployesManager($this->_db);
+        $EncM = new EnclosManager($this->_db);
+        $EmM->getBddEmployees($zoo);
+        $EncM->getBddEnclos($zoo);
+        return $zoo;
     }
     public function getAllZoo(){
         $zoos = [];

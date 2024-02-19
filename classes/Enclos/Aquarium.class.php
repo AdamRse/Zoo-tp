@@ -2,10 +2,9 @@
 namespace Enclos;
 class Aquarium extends Enclos 
 {
-    protected $salinité;
-
-    public function __construct($id, $proprete, $salinité) {
-        parent::__construct($id, $proprete);
-        $this->salinité = $salinité;
+    public function __construct($hydrate = []) {
+        if(!empty($hydrate))
+            parent::__construct($hydrate);
+        $this->_type = "Aquarium";
     }
 }
