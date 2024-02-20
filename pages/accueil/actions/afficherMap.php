@@ -6,7 +6,7 @@ $employeManager = new \Managers\EmployesManager($connexion);
 $listeAnimal = $animalManager->getAnimalAvailableArray();
 $zoo = $zooManager->getZooId(ZOO);
 ?>
-<div class="relative inline-block w-full overflow-hidden select-none">
+<div id="divMap" class="relative inline-block w-full overflow-hidden select-none">
     <div class="absolute pt-5 pl-7">
         <i id="btMenu" class="p-2 cursor-pointer shadow-<?= COLOR_THEME_TW ?>-700 fa-solid fa-bars text-<?= COLOR_THEME_TW ?>-700 fa-2x"></i>
         <?php
@@ -62,9 +62,9 @@ $zoo = $zooManager->getZooId(ZOO);
                         <td>Enclosure</td>
                         <td class="pl-3 text-right font-bold">
                             <select id="selectBuyEnc" class="m-2 p-2 <?= COLOR_THEME_BT ?>">
-                                <option value="1">Enclosure (200 000€)</option>
-                                <option value="2">Aviary (300 000€)</option>
-                                <option value="3">Aquarium (250 000€)</option>
+                                <option value="Enclos">Enclosure (200 000€)</option>
+                                <option value="Voliere">Aviary (300 000€)</option>
+                                <option value="Aquarium">Aquarium (250 000€)</option>
                             </select>
                             <button id="btBuyEnclosure" class="m-2 p-2 <?= COLOR_THEME_BT ?>">Buy</button>
                         </td>
@@ -99,7 +99,7 @@ $zoo = $zooManager->getZooId(ZOO);
                     ?>
                     <div class="py-1 px-5 flex justify-between border-b border-<?= COLOR_THEME_TW ?>-700">
                         <div class="flex items-center">
-                            <img src="/images/icon/" class="w-10 mr-2" />
+                            <img src="<?= P_ICON.$employe->getImg() ?>" class="w-10 mr-2" />
                         </div>
                         <div>
                             <div class="text-xl font-bold"><?= $employe->getName() ?></div>
@@ -116,29 +116,35 @@ $zoo = $zooManager->getZooId(ZOO);
         ?>
     </div>
     <img src="/images/map.png" class="w-full top-0 left-0"/>
+    <div id="tmpEnclosSelect" class="Enclos enclosure text-center hidden bg-slate-400 hover:bg-white absolute rounded-full shadow-2xl border cursor-pointer">
+        Select
+    </div>
+    <div id="tmpEnclos" class="enclosure hidden absolute rounded-full shadow-2xl border cursor-pointer">
+        <div class="px-2 rounded-md text-center text-<?= COLOR_THEME_TW ?>-700 bg-<?= COLOR_THEME_TW ?>-200 mt-14"></div>
+    </div><!--
     <?php
     foreach($zoo->getEnclos() as $enclos){
-        if($enclos->getType() == "enclos"){
+        if($enclos->getType() == "Enclos"){
             ?>
-            <div class="enclos inline-block absolute rounded-full shadow-2xl border cursor-pointer" style="left: <?= $enclos->getPosX() ?>%; top: <?= $enclos->getPosY() ?>%; background: center/150% url('./images/enclos.png')">
-            <div class="px-2 rounded-md text-center text-<?= COLOR_THEME_TW ?>-700 bg-<?= COLOR_THEME_TW ?>-200 mt-14">Enclos</div>
+            <div class="enclosure inline-block absolute rounded-full shadow-2xl border cursor-pointer" style="left: <?= $enclos->getPosX() ?>%; top: <?= $enclos->getPosY() ?>%; background: center/150% url('./images/Enclos.png')">
+                <div class="px-2 rounded-md text-center text-<?= COLOR_THEME_TW ?>-700 bg-<?= COLOR_THEME_TW ?>-200 mt-14">Enclos</div>
             </div>
             <?php
         }
-        elseif($enclos->getType() == "voliere"){
+        elseif($enclos->getType() == "Voliere"){
             ?>
-            <div class="enclos inline-block absolute rounded-full shadow-2xl border cursor-pointer" style="left: <?= $enclos->getPosX() ?>%; top: <?= $enclos->getPosY() ?>%; background: center/150% url('./images/voliere.png')">
-            <div class="px-2 min-w-16 rounded-md text-center text-<?= COLOR_THEME_TW ?>-700 bg-<?= COLOR_THEME_TW ?>-200 mt-14">Volière</div>
+            <div class="enclosure inline-block absolute rounded-full shadow-2xl border cursor-pointer" style="left: <?= $enclos->getPosX() ?>%; top: <?= $enclos->getPosY() ?>%; background: center/150% url('./images/Voliere.png')">
+                <div class="px-2 min-w-16 rounded-md text-center text-<?= COLOR_THEME_TW ?>-700 bg-<?= COLOR_THEME_TW ?>-200 mt-14">Volière</div>
             </div>
             <?php
         }
         else{
             ?>
-            <div class="text-center enclos inline-block absolute rounded-full shadow-2xl border cursor-pointer" style="left: <?= $enclos->getPosX() ?>%; top: <?= $enclos->getPosY() ?>%; background: center/150% url('./images/aquarium.png')">
-            <div class="px-2 min-w-24 rounded-md text-center text-<?= COLOR_THEME_TW ?>-700 bg-<?= COLOR_THEME_TW ?>-200 mt-14">Aquarium</div>
+            <div class="enclosure text-center enclos inline-block absolute rounded-full shadow-2xl border cursor-pointer" style="left: <?= $enclos->getPosX() ?>%; top: <?= $enclos->getPosY() ?>%; background: center/150% url('./images/Aquarium.png')">
+                <div class="px-2 min-w-24 rounded-md text-center text-<?= COLOR_THEME_TW ?>-700 bg-<?= COLOR_THEME_TW ?>-200 mt-14">Aquarium</div>
             </div>
         <?php
         }
     }
-    ?>
+    ?>-->
 </div>
