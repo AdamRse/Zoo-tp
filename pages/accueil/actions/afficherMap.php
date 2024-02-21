@@ -12,18 +12,18 @@ $zoo = $zooManager->getZooId(ZOO);
         <?php
         if($zoo->nbEmployes() > 0){
             ?>
-            <i id="btStats" class="p-2 cursor-pointer fa-regular fa-compass text-<?= COLOR_THEME_TW ?>-700 fa-2x"></i>
+            <i id="btStats" class="p-2 cursor-pointer hover:ring-2 ring-red-500 ring-offset-4 dark:ring-offset-slate-900  fa-regular fa-compass text-<?= COLOR_THEME_TW ?>-700 fa-2x"></i>
             <?php
         }
         ?>
     </div>
     <div class="absolute mt-20 flex justify-center">
-        <div id="divMenuMap" class="hidden ml-5 py-5 text-<?= COLOR_THEME_TW ?>-700 border-2 border-<?= COLOR_THEME_TW ?>-700 bg-<?= COLOR_THEME_TW ?>-200 rounded-lg">
+        <div id="divMenuMap" class="hidden ml-5 py-5  text-<?= COLOR_THEME_TW ?>-700 border-2 border-<?= COLOR_THEME_TW ?>-700 bg-<?= COLOR_THEME_TW ?>-200 rounded-lg">
             <div class="px-5 py-2 text-3xl text-center">
                 Zoo d<?= (in_array(substr(strtolower($zoo->getOwner()), 0, 1), array("a", "e", "i", "o", "u", "y")) ? "'" : "e")." <b>".$zoo->getOwner()."</b>" ?>
             </div>
             <div class="px-5 py-2 mb-2 text-xl text-center border-b-4 border-<?= COLOR_THEME_TW ?>-700">
-                Stats
+                Statsz
             </div>
             <div>
                 <table class="w-full">

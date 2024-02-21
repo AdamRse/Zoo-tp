@@ -2,3 +2,8 @@
     width: 4%;
     height: 6%;
 }
+#divStatMap{
+    max-height: 1000px;
+    overflow-y: auto;
+    scrollbar-width: thin;  
+}
