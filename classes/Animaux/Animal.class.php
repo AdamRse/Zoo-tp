@@ -2,7 +2,7 @@
 
 namespace Animaux;
 
-class Animal
+abstract class Animal
 {
     protected int $_id;
     protected int $_age = 0;

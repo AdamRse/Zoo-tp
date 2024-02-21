@@ -23,7 +23,7 @@ class EnclosManager{
     public function assignPositionAvailable(Zoo $zoo, Enclos $enclos){
         $q = $this->_db->prepare("SELECT id, posX, posY FROM position_enclos WHERE type = ?");
         $q->execute([$enclos->getType()]);
-        $EnclosGrid = $q->fetchAll();
+        $EnclosGrid = $q->fetchAll(PDO::FETCH_ASSOC);
         $enclosZoo = $zoo->getEnclos();
         $posTrouve = [];
         foreach ($EnclosGrid as $k => $enclosGrid1){
@@ -39,9 +39,9 @@ class EnclosManager{
             $enclos->setPosY($EnclosGrid[$rand]["posY"]);
         }
     }
-    public function createEnclosBdd(Zoo $zoo, $type = "Enclos"){
-        $enclos = new $type();
-        $this->assignPositionAvailable($zoo, $enclos);
+    public function createEnclosBdd(Zoo $zoo, Enclos $enclos){
+        if(empty($enclos->getPosX()) || empty($enclos->getPosY()))
+            $this->assignPositionAvailable($zoo, $enclos);
         $q = $this->_db->prepare("INSERT INTO enclos (id_zoo, type, proprete, maxAnimaux, posX, posY) VALUES (:id_zoo, :type, :proprete, :maxAnimaux, :posX, :posY)");
         $q->execute([
             "idZoo" => $zoo->getId()
@@ -52,6 +52,19 @@ class EnclosManager{
             , "posY" => $enclos->getPosY()
         ]);
         $q2 = $this->_db->query("SELECT * FROM enclos WHERE id = ".$this->_db->lastInsertId());
-        return new $enclos($q2->fetch());
+        return new $enclos($q2->fetch(PDO::FETCH_ASSOC));
+    }
+    public function getFreePosEnclos(Zoo $zoo, $type){
+        $zooEnclos = $zoo->getEnclos();
+        $q = $this->_db->prepare("SELECT posX, posY FROM position_enclos WHERE type = ?");
+        $q->execute([$type]);
+        $EnclosGrid = $q->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($EnclosGrid as $k => $enclosGrid1){
+            foreach ($zooEnclos as $zooEnclos1) {
+                if($enclosGrid1['posX'] == $zooEnclos1->getPosX() && $enclosGrid1['posY'] == $zooEnclos1->getPosY())
+                    array_splice($EnclosGrid, $k, 1);
+            }
+        }
+        return $EnclosGrid;
     }
 }
