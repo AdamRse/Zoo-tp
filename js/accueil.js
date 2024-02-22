@@ -5,9 +5,14 @@ let btStats = document.querySelector("#btStats");
 let divMap = document.querySelector("#divMap");
 let tmpEnclos = document.querySelector("#tmpEnclosSelect");
 let tmpNewEnclos = document.querySelector("#tmpEnclos");
-document.querySelector("#btMenu").addEventListener("click", function(){
-    divMenu.classList.toggle("hidden");
-});
+let btMenu = document.querySelector("#btMenu")
+
+
+//if (btMenu ===  divMenu.classList.toggle("hidden")) {
+    //btMenu.addEventListener("click", function(){
+      // })
+    
+//}
 
 if(btStats){
     btStats.addEventListener("click", function(){
@@ -68,3 +73,15 @@ function random(a) {
     }))
 
 }
+//Effet Bouttons btMenu btStats
+//document.querySelector('#btMenu').addEventListener("click",function(){
+    //console.log("CC");
+    
+//});
+
+//document.querySelector('#btStats').addEventListener("click",function(){
+    //console.log("Hello Word");
+     
+ 
+//});
+
