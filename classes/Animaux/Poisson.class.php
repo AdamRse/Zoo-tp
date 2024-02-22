@@ -2,11 +2,13 @@
 namespace Animaux;
 class Poisson extends Animal
 {
-    public function __construct($id, $poids = 0.0002, $taille = 0.01)
+    public function __construct($hydrate = [])
     {
-        parent::__construct($id, $poids, $taille);
         $this->setName("Poisson");
         $this->setCrie("rote");
+        $this->_poids = 0.0002;
+        $this->_taille = 0.01;
+        parent::__construct($hydrate);
     }
     public function Nager()
     {

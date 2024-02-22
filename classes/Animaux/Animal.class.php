@@ -6,12 +6,12 @@ abstract class Animal
 {
     protected int $_id;
     protected int $_age = 0;
-    protected int $_poids;
-    protected int $_taille;
+    protected float $_poids;
+    protected float $_taille;
     protected string $_name;
-    protected bool $_faim = false;
-    protected bool $_dort = false;
-    protected bool $_malade = false;
+    protected int $_faim = 100;
+    protected int $_dort = 100;
+    protected int $_malade = 0;
     protected string $_crie;
     
     public function __construct(array $hydrate = [])
@@ -26,6 +26,19 @@ abstract class Animal
                 $this->$method($value);
             }
         }
+    }
+    public function exportAssoc(){
+        return array(
+            "id" => $this->_id
+            , "age" => $this->_age
+            , "poids" => $this->_poids
+            , "taille" => $this->_taille
+            , "name" => $this->_name
+            , "faim" => $this->_faim
+            , "dort" => $this->_dort
+            , "malade" => $this->_malade
+            , "crie" => $this->_crie
+        );
     }
     public function manger()
     {

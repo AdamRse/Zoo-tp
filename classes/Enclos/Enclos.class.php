@@ -26,8 +26,8 @@ class Enclos
             }
         }
     }
-    public function exportAssoc(){
-        return array(
+    public function exportAssoc(bool $afficherAnimaux = false){
+        $rt = array(
             "id" => $this->_id
             , "type" => $this->_type
             , "proprete" => $this->_proprete
@@ -35,6 +35,15 @@ class Enclos
             , "posX" => $this->_posX
             , "posY" => $this->_posY
         );
+        if($afficherAnimaux){
+            foreach ($this->_animal as $animal1) {
+                $rt["animaux"][]=$animal1->exportAssoc();
+            }
+        }
+        return $rt;
+    }
+    public function isFree(){
+        return sizeof($this->_animal) < $this->_maxAnimaux;
     }
     public function CaracteristqueEnclos()
     {

@@ -6,14 +6,18 @@ require "../config_php/const.php";
 
 if(ZOO){
     $zooManager = new \Managers\ZooManager($connexion);
-    $employeeManager = new \Managers\EmployesManager($connexion);
     $zoo = $zooManager->getZooId(ZOO);
 
-    $cost = $zooManager->getPrices('ZooKeeper');
-    $zoo->pay($cost);
-    $employeeManager->createEmployeeBdd($zoo);
-    $zooManager->save($zoo);
-    echo json_encode(true);
+    $employes = [];
+    $enclos = [];
+
+    foreach ($zoo as $employe){
+        $employes[] = $employe->exportAssoc();
+    }
+    foreach ($zoo as $enclos1){
+        $enclos[] = array($enclos1->exportAssoc(true));
+    }
+    echo json_encode(array("enclos" => $enclos, "employes" => $employes));
 }
 else
     echo json_encode(array("error" => "Non connecté"));

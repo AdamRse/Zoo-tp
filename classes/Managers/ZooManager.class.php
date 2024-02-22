@@ -9,14 +9,16 @@ class ZooManager{
         $this->_db = $connexion;
     }
 
-    public function getZooId($id){
+    public function getZooId($id, bool $complete = true){
         $q = $this->_db->prepare("SELECT * FROM zoo WHERE id = ?");
         $q->execute([$id]);
         $zoo = new Zoo($q->fetch(PDO::FETCH_ASSOC));
-        $EmM = new EmployesManager($this->_db);
-        $EncM = new EnclosManager($this->_db);
-        $EmM->getBddEmployees($zoo);
-        $EncM->getBddEnclos($zoo);
+        if($complete){
+            $EmM = new EmployesManager($this->_db);
+            $EncM = new EnclosManager($this->_db);
+            $EmM->getBddEmployees($zoo);
+            $EncM->getBddEnclos($zoo);
+        }
         return $zoo;
     }
     public function getAllZoo(){
@@ -32,8 +34,14 @@ class ZooManager{
         $q->execute([$name]);
         return $q->fetchColumn();
     }
-    public function saveZoo(Zoo $zoo){
-        $q = $this->_db->prepare("UPDATE zoo SET money = :money, entry_price = :entry_price WHERE id = :id");
+    public function save(Zoo $zoo){
+        $sql = "UPDATE zoo SET ";
+        foreach($zoo->exportAssoc() as $col => $val){
+            if($col != "id")
+                $sql .= "$col = :$col, ";
+        }
+        $sql = substr($sql, 0, -2)." WHERE id = :id";
+        $q = $this->_db->prepare($sql);
         return $q->execute($zoo->exportAssoc());
     }
 }

@@ -14,11 +14,29 @@ class EnclosManager{
         $q->execute([$id]);
         return new Enclos($q->fetch(PDO::FETCH_ASSOC));
     }
-    public function getBddEnclos(Zoo $zoo){
+    public function save(Enclos $enclos){
+        $sql = "UPDATE enclos SET ";
+        foreach($enclos->exportAssoc() as $col => $val){
+            if($col != "id")
+                $sql .= "$col = :$col, ";
+        }
+        $sql = substr($sql, 0, -2)." WHERE id = :id";
+        $q = $this->_db->prepare($sql);
+        return $q->execute($enclos->exportAssoc());
+    }
+    public function getBddEnclos(Zoo $zoo, $complete = true){
         $q = $this->_db->prepare("SELECT * FROM enclos WHERE id_zoo = ?");
         $q->execute([$zoo->getId()]);
-        while($e = $q->fetch(PDO::FETCH_ASSOC))
-            $zoo->addEnclos(new $e['type']($e));
+        if($complete)
+            $am = new AnimalManager($this->_db);
+        while($e = $q->fetch(PDO::FETCH_ASSOC)){
+            $className = "Enclos\\".$e['type'];
+            $newEnclos = new $className($e);
+            if($complete){
+                $am->getBddAnimauxEnclos($newEnclos);
+                $zoo->addEnclos($newEnclos);
+            }
+        }
     }
     public function assignPositionAvailable(Zoo $zoo, Enclos $enclos){
         $q = $this->_db->prepare("SELECT id, posX, posY FROM position_enclos WHERE type = ?");
@@ -39,10 +57,15 @@ class EnclosManager{
             $enclos->setPosY($EnclosGrid[$rand]["posY"]);
         }
     }
+    public function isPosCorrect($type, $posX, $posY){
+        $q = $this->_db->prepare("SELECT id FROM position_enclos WHERE posX = ? AND posY = ? AND type = ?");
+        $q->execute([$posX, $posY, $type]);
+        return empty($q->fetchColumn()) ? false : true;
+    }
     public function createEnclosBdd(Zoo $zoo, Enclos $enclos){
         if(empty($enclos->getPosX()) || empty($enclos->getPosY()))
             $this->assignPositionAvailable($zoo, $enclos);
-        $q = $this->_db->prepare("INSERT INTO enclos (id_zoo, type, proprete, maxAnimaux, posX, posY) VALUES (:id_zoo, :type, :proprete, :maxAnimaux, :posX, :posY)");
+        $q = $this->_db->prepare("INSERT INTO enclos (id_zoo, type, proprete, maxAnimaux, posX, posY) VALUES (:idZoo, :type, :proprete, :maxAnimaux, :posX, :posY)");
         $q->execute([
             "idZoo" => $zoo->getId()
             , "type" => $enclos->getType()
@@ -51,8 +74,6 @@ class EnclosManager{
             , "posX" => $enclos->getPosX()
             , "posY" => $enclos->getPosY()
         ]);
-        $q2 = $this->_db->query("SELECT * FROM enclos WHERE id = ".$this->_db->lastInsertId());
-        return new $enclos($q2->fetch(PDO::FETCH_ASSOC));
     }
     public function getFreePosEnclos(Zoo $zoo, $type){
         $zooEnclos = $zoo->getEnclos();
