@@ -6,6 +6,7 @@ $employeManager = new \Managers\EmployesManager($connexion);
 $listeAnimal = $animalManager->getAnimalAvailableArray();
 $zoo = $zooManager->getZooId(ZOO, false);
 ?>
+
 <div id="hiddenElem" class="hidden" data-id="<?= $zoo->getId() ?>">
     <!-- Employee -->
     <div class="elem-menuEmploye py-1 px-5 flex justify-between border-b border-<?= COLOR_THEME_TW ?>-700">
@@ -28,11 +29,11 @@ $zoo = $zooManager->getZooId(ZOO, false);
 <!-- 
 //////////////////////// MAP //////////////////////// 
 -->
-
-<div id="divMap" class="relative inline-block w-full overflow-hidden select-none">
+<div id="divMap" data-color_theme="<?= COLOR_THEME_TW ?>" class="relative inline-block w-full overflow-hidden select-none">
     <div class="absolute pt-5 pl-7">
-        <i id="btMenu" class="p-2 cursor-pointer shadow-<?= COLOR_THEME_TW ?>-700 fa-solid fa-bars text-<?= COLOR_THEME_TW ?>-700 fa-2x"></i>
-        <i id="btStats" class="<?= $zoo->nbEmployes() > 0 ? "" : "hidden" ?>p-2 cursor-pointer hover:ring-2 ring-red-500 ring-offset-4 dark:ring-offset-slate-900  fa-regular fa-compass text-<?= COLOR_THEME_TW ?>-700 fa-2x"></i>
+
+        <i id="btMenu" class="p-2 cursor-pointer rounded-full  ring-offset-4 shadow-<?= COLOR_THEME_TW ?>-700 fa-solid fa-bars text-<?= COLOR_THEME_TW ?>-700 fa-2x"></i>
+        <i id="btStats" class="p-2 cursor-pointer rounded-full  ring-offset-4  fa-regular fa-compass text-<?= COLOR_THEME_TW ?>-700 fa-2x"></i>
 
     </div>
     <div class="absolute mt-20 flex justify-center">

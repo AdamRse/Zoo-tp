@@ -11,13 +11,38 @@ let btStats = document.querySelector("#btStats");
 let divMap = document.querySelector("#divMap");
 let tmpEnclos = document.querySelector("#tmpEnclosSelect");
 let tmpNewEnclos = document.querySelector("#tmpEnclos");
-document.querySelector("#btMenu").addEventListener("click", function(){
-    divMenu.classList.toggle("hidden");
-});
+let btMenu = document.querySelector("#btMenu");
 
+let colorTheme = divMap.dataset.color_theme;
+console.log(colorTheme);
+
+
+if (btMenu) {
+    btMenu.addEventListener("click", function(){
+
+        if (divMenu.classList.contains("hidden")) {
+            divMenu.classList.remove("hidden");
+            btMenu.classList.add("bg-"+colorTheme+"-200");
+            btMenu.classList.add("ring-"+colorTheme+"-700");
+        }else{
+            divMenu.classList.add("hidden");
+            btMenu.classList.remove("bg-"+colorTheme+"-200");
+            btMenu.classList.remove("ring-"+colorTheme+"-700");
+        }
+             
+       });  
+}
 btStats.addEventListener("click", function(){
-    divStat.classList.toggle("hidden");
-});
+    if (divStat.classList.contains("hidden")) {
+        divStat.classList.remove("hidden");
+        btStats.classList.add("bg-"+colorTheme+"-200");
+        btStats.classList.add("ring-"+colorTheme+"-700");
+    }else{
+        divStat.classList.add("hidden");
+        btStats.classList.remove("bg-"+colorTheme+"-200");
+        btStats.classList.remove("ring-"+colorTheme+"-700");
+    }
+}); 
 
 refreshAll();
 
