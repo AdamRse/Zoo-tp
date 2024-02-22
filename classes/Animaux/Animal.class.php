@@ -13,6 +13,7 @@ abstract class Animal
     protected int $_dort = 100;
     protected int $_malade = 0;
     protected string $_crie;
+    protected $_icon;
     
     public function __construct(array $hydrate = [])
     {
@@ -158,6 +159,10 @@ abstract class Animal
     {
         return $this->_crie;
     }
+    public function getIcon()
+    {
+        return $this->_icon;
+    }
     // SETTER
 
     public function setId($_id)
@@ -196,5 +201,9 @@ abstract class Animal
     public function setCrie($_crie)
     {
         $this->_crie = $_crie;
+    }
+    public function setIcon($i)
+    {
+        $this->_icon = $i;
     }
 }

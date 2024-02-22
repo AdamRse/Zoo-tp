@@ -11,10 +11,10 @@ if(ZOO){
     $employes = [];
     $enclos = [];
 
-    foreach ($zoo as $employe){
+    foreach ($zoo->getEmployes() as $employe){
         $employes[] = $employe->exportAssoc();
     }
-    foreach ($zoo as $enclos1){
+    foreach ($zoo->getEnclos() as $enclos1){
         $enclos[] = array($enclos1->exportAssoc(true));
     }
     echo json_encode(array("enclos" => $enclos, "employes" => $employes));

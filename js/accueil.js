@@ -1,4 +1,10 @@
-console.log("Hola accueil");
+let hiddenElements = document.querySelector("#hiddenElem");
+let idZoo = hiddenElements.dataset.id;
+let elemMenuEmployee = hiddenElements.querySelector(".elem-menuEmploye");
+let elemEnclosure = hiddenElements.querySelector(".elem-enclosure");
+
+let divTitleEmployees = document.querySelector("#divTitleEmployees");
+
 let divMenu = document.querySelector("#divMenuMap");
 let divStat = document.querySelector("#divStatMap");
 let btStats = document.querySelector("#btStats");
@@ -26,73 +32,39 @@ if (btMenu) {
              
        });  
 }
+btStats.addEventListener("click", function(){
+    if (divStat.classList.contains("hidden")) {
+        divStat.classList.remove("hidden");
+        btStats.classList.add("bg-"+colorTheme+"-200");
+        btStats.classList.add("ring-"+colorTheme+"-700");
+    }else{
+        divStat.classList.add("hidden");
+        btStats.classList.remove("bg-"+colorTheme+"-200");
+        btStats.classList.remove("ring-"+colorTheme+"-700");
+    }
+}); 
 
-if(btStats){
-    btStats.addEventListener("click", function(){
+refreshAll();
 
-        if (divStat.classList.contains("hidden")) {
-            divStat.classList.remove("hidden");
-            btStats.classList.add("bg-"+colorTheme+"-200");
-            btStats.classList.add("ring-"+colorTheme+"-700");
-        }else{
-            divStat.classList.add("hidden");
-            btStats.classList.remove("bg-"+colorTheme+"-200");
-            btStats.classList.remove("ring-"+colorTheme+"-700");
-        }
-             
-       }); 
+function refreshAll(){
+    getFetch("getEnclosEmployeesAnimaux").then((rt) => {
+        console.log(rt);
+        if(rt.employes)
+            updateDivEmployees(rt.employes)
+    })
 }
-// Ajout
-document.querySelector('#btBuyZk').addEventListener("click", function(){
-    fetch('./ajax/buyZookeeper.php')
-    .then((response=>{ 
-        console.log(response);
-       
-    }))
-})
-document.querySelector('#btBuyEnclosure').addEventListener("click", function(){
-    let encType = document.querySelector("#selectBuyEnc").value;
-    getFetch("getEnclosAvailablePosition", "type="+encType).then((rt) => {
-        let i = 0;
-        rt.forEach(enc => {
-            let nvEncSelect = tmpEnclos.cloneNode(true);
-            nvEncSelect.id = "ne-"+i; nvEncSelect.classList.add("inline-block");  nvEncSelect.classList.remove("hidden");
-            nvEncSelect.dataset.posX = enc.posX; nvEncSelect.dataset.posY = enc.posY; nvEncSelect.style.left = enc.posX+"%"; nvEncSelect.style.top = enc.posY+"%";
-            nvEncSelect.addEventListener("click", function(){
-                let thisEnc = this;
-                getFetch("buyEnclosure", "type="+encType).then((rtBuy) => {
-                    if(rtBuy === true){
-                        nvEncSelect.classList.remove("inline-block"); nvEncSelect.classList.add("hidden");
-                        let nvEnc = tmpNewEnclos.cloneNode(true);
-                        nvEnc.id = ""; nvEnc.classList.add("inline-block"); nvEnc.classList.remove("hidden");
-                        nvEnc.style.top = thisEnc.dataset.posY; nvEnc.style.top = thisEnc.dataset.posX; nvEnc.style.background = "center/150% url('./images/"+encType+".png')";
-                        nvEnc.querySelector('div').innerHTML = encType;
-                        
-                    }
-                    else{
-                        alert("An error occured\n"+rtBuy.error);
-                        window.location.href = "./";
-                    }
-                });
-            })
-            divMap.appendChild(nvEnc);
-        });
-    });
-   
-})
-document.querySelector('#btBuyAnimal').addEventListener("click", function(){
-    fetch('./ajax/buyAnimal.php')
-   
-    .then((response=>{ 
-        console.log(response);
-       
-    }))
-   
-})
-function random(a) {
-    fetch('./classes/Animaux/Animal.class.php')
-    a.then((response =>{
-        return response.json();
-    }))
 
+function updateDivEmployees(employes){
+    let nbEmployees = employes.length;
+    divTitleEmployees.innerHTML = "Employee"+(nbEmployees>1?"s":"")+" ("+nbEmployees+")";
+    employes.forEach((employe) => {
+        let newDiv = elemMenuEmployee.cloneNode(true);
+        console.log();
+        newDiv.dataset.id = employe.id;
+        newDiv.querySelector("img").src = newDiv.querySelector("img").dataset.p_icon+"/"+employe.img;
+        newDiv.querySelector(".name").innerHTML = employe.name;
+        newDiv.querySelector(".role").innerHTML = employe.role
+        newDiv.querySelector(".experience").innerHTML = employe.experience == 0 ? "Newbie" : "Experience : "+employe.experience;
+        divStat.appendChild(newDiv);
+    });
 }
