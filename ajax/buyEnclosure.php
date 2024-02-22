@@ -3,6 +3,7 @@
 //$_GET['type'] Nom strict de la classe Enclos dans classes/Enclos (ex : Enclos)
 //$_GET['px'] position X de l'enclos
 //$_GET['py'] position Y de l'enclos
+
 session_start();
 require "../config_php/db.php";
 require "../config_php/autoload.php";
