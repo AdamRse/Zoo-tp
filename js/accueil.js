@@ -5,19 +5,42 @@ let btStats = document.querySelector("#btStats");
 let divMap = document.querySelector("#divMap");
 let tmpEnclos = document.querySelector("#tmpEnclosSelect");
 let tmpNewEnclos = document.querySelector("#tmpEnclos");
-let btMenu = document.querySelector("#btMenu")
+let btMenu = document.querySelector("#btMenu");
+
+let colorTheme = divMap.dataset.color_theme;
+console.log(colorTheme);
 
 
-//if (btMenu ===  divMenu.classList.toggle("hidden")) {
-    //btMenu.addEventListener("click", function(){
-      // })
-    
-//}
+if (btMenu) {
+    btMenu.addEventListener("click", function(){
+
+        if (divMenu.classList.contains("hidden")) {
+            divMenu.classList.remove("hidden");
+            btMenu.classList.add("bg-"+colorTheme+"-200");
+            btMenu.classList.add("ring-"+colorTheme+"-700");
+        }else{
+            divMenu.classList.add("hidden");
+            btMenu.classList.remove("bg-"+colorTheme+"-200");
+            btMenu.classList.remove("ring-"+colorTheme+"-700");
+        }
+             
+       });  
+}
 
 if(btStats){
     btStats.addEventListener("click", function(){
-        divStat.classList.toggle("hidden");
-    });
+
+        if (divStat.classList.contains("hidden")) {
+            divStat.classList.remove("hidden");
+            btStats.classList.add("bg-"+colorTheme+"-200");
+            btStats.classList.add("ring-"+colorTheme+"-700");
+        }else{
+            divStat.classList.add("hidden");
+            btStats.classList.remove("bg-"+colorTheme+"-200");
+            btStats.classList.remove("ring-"+colorTheme+"-700");
+        }
+             
+       }); 
 }
 // Ajout
 document.querySelector('#btBuyZk').addEventListener("click", function(){
@@ -73,15 +96,3 @@ function random(a) {
     }))
 
 }
-//Effet Bouttons btMenu btStats
-//document.querySelector('#btMenu').addEventListener("click",function(){
-    //console.log("CC");
-    
-//});
-
-//document.querySelector('#btStats').addEventListener("click",function(){
-    //console.log("Hello Word");
-     
- 
-//});
-
