@@ -7,7 +7,3 @@
     overflow-y: auto;
     scrollbar-width: thin;  
 }
-.active:hover{
-   background-color: red;
-   border: whitesmoke solid;
-}
