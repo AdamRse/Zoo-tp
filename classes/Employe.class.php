@@ -41,6 +41,7 @@ class Employe
             , "sexe" => $this->_sexe
             , "role" => $this->_role
             , "experience" => $this->_experience
+            , "img" => $this->_img
         );
     }
     public function Nettoyer ($enclos)

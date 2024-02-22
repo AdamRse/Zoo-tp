@@ -9,6 +9,7 @@ class Ours extends Animal
         $this->setCrie("grogne");
         $this->_poids = 0.225;
         $this->_taille = 17.5;
+        $this->_icon = "ours.png";
         parent::__construct($hydrate);
     }
 

@@ -4,26 +4,46 @@ $animalManager = new Managers\AnimalManager($connexion);
 $employeManager = new \Managers\EmployesManager($connexion);
 
 $listeAnimal = $animalManager->getAnimalAvailableArray();
-$zoo = $zooManager->getZooId(ZOO);
+$zoo = $zooManager->getZooId(ZOO, false);
 ?>
+<div id="hiddenElem" class="hidden" data-id="<?= $zoo->getId() ?>">
+    <!-- Employee -->
+    <div class="elem-menuEmploye py-1 px-5 flex justify-between border-b border-<?= COLOR_THEME_TW ?>-700">
+        <div class="flex items-center">
+            <img data-p_icon="<?= P_ICON ?>"  src="" class="w-10 mr-2" />
+        </div>
+        <div>
+            <div class="name text-xl font-bold"></div>
+            <div class="role"></div>
+            <div class="experience"></div>
+        </div>
+    </div>
+
+    <!-- Enclosures -->
+    <div class="elem-enclosure enclosure inline-block absolute rounded-full shadow-2xl border cursor-pointer">
+        <div class="tag-enclos px-2 rounded-md text-center text-<?= COLOR_THEME_TW ?>-700 bg-<?= COLOR_THEME_TW ?>-200 mt-14"></div>
+    </div>
+</div>
+
+<!-- 
+//////////////////////// MAP //////////////////////// 
+-->
+
 <div id="divMap" class="relative inline-block w-full overflow-hidden select-none">
     <div class="absolute pt-5 pl-7">
         <i id="btMenu" class="p-2 cursor-pointer shadow-<?= COLOR_THEME_TW ?>-700 fa-solid fa-bars text-<?= COLOR_THEME_TW ?>-700 fa-2x"></i>
-        <?php
-        if($zoo->nbEmployes() > 0){
-            ?>
-            <i id="btStats" class="p-2 cursor-pointer hover:ring-2 ring-red-500 ring-offset-4 dark:ring-offset-slate-900  fa-regular fa-compass text-<?= COLOR_THEME_TW ?>-700 fa-2x"></i>
-            <?php
-        }
-        ?>
+        <i id="btStats" class="<?= $zoo->nbEmployes() > 0 ? "" : "hidden" ?>p-2 cursor-pointer hover:ring-2 ring-red-500 ring-offset-4 dark:ring-offset-slate-900  fa-regular fa-compass text-<?= COLOR_THEME_TW ?>-700 fa-2x"></i>
+
     </div>
     <div class="absolute mt-20 flex justify-center">
+
+        <!-- Menu -->
         <div id="divMenuMap" class="hidden ml-5 py-5  text-<?= COLOR_THEME_TW ?>-700 border-2 border-<?= COLOR_THEME_TW ?>-700 bg-<?= COLOR_THEME_TW ?>-200 rounded-lg">
             <div class="px-5 py-2 text-3xl text-center">
                 Zoo d<?= (in_array(substr(strtolower($zoo->getOwner()), 0, 1), array("a", "e", "i", "o", "u", "y")) ? "'" : "e")." <b>".$zoo->getOwner()."</b>" ?>
             </div>
             <div class="px-5 py-2 mb-2 text-xl text-center border-b-4 border-<?= COLOR_THEME_TW ?>-700">
-                Statsz
+                Stats
             </div>
             <div>
                 <table class="w-full">
@@ -87,33 +107,13 @@ $zoo = $zooManager->getZooId(ZOO);
                 </table>
             </div>
         </div>
-        <?php
-        if($zoo->nbEmployes() > 0){
-            ?>
-            <div id="divStatMap" class="hidden ml-5 py-5 text-<?= COLOR_THEME_TW ?>-700 border-2 border-<?= COLOR_THEME_TW ?>-700 bg-<?= COLOR_THEME_TW ?>-200 rounded-lg">
-                <div class="px-5 py-2 text-xl text-center border-b-4 border-<?= COLOR_THEME_TW ?>-700">
-                    Employee<?= $zoo->nbEmployes() > 1 ? "s" : "" ?> (<?= $zoo->nbEmployes() ?>)
-                </div>
-                <?php
-                foreach($zoo->getEmployes() as $employe){
-                    ?>
-                    <div class="py-1 px-5 flex justify-between border-b border-<?= COLOR_THEME_TW ?>-700">
-                        <div class="flex items-center">
-                            <img src="<?= P_ICON.$employe->getImg() ?>" class="w-10 mr-2" />
-                        </div>
-                        <div>
-                            <div class="text-xl font-bold"><?= $employe->getName() ?></div>
-                            <div><?= $employe->getRole() ?></div>
-                            <div><?= $employe->getExperience() > 0 ? $employe->getExperience()."xp" : "No experience" ?></div>
-                        </div>
-                    </div>
-                    <?php
-                }
-                ?>
+
+        <!-- Employee -->
+        <div id="divStatMap" class="hidden ml-5 py-5 text-<?= COLOR_THEME_TW ?>-700 border-2 border-<?= COLOR_THEME_TW ?>-700 bg-<?= COLOR_THEME_TW ?>-200 rounded-lg">
+            <div id="divTitleEmployees" class="px-5 py-2 text-xl text-center border-b-4 border-<?= COLOR_THEME_TW ?>-700">
+                Employee<?= $zoo->nbEmployes() > 1 ? "s" : "" ?> (<?= $zoo->nbEmployes() ?>)
             </div>
-            <?php
-        }
-        ?>
+        </div>
     </div>
     <img src="/images/map.png" class="w-full top-0 left-0"/>
     <div id="tmpEnclosSelect" class="Enclos enclosure text-center hidden bg-slate-400 hover:bg-white absolute rounded-full shadow-2xl border cursor-pointer">
