@@ -13,8 +13,8 @@ if(ZOO){
         $enclosManager = new Managers\EnclosManager($connexion);
         $animalManager = new Managers\AnimalManager($connexion);
 
-        $price = $animalManager->getPrices($_GET['name']);
-        if($price && file_exists(P_ROOT."/classes/Animaux/".$_GET['name'].".class.php")){
+        
+        if($price = $animalManager->getPrices($_GET['name']) && file_exists(P_ROOT."/classes/Animaux/".$_GET['name'].".class.php")){
             if($enclos = $enclosManager->getEnclosId($_GET['enclos'])){
                 if($enclos->isFree()){
                     $zoo = $zooManager->getZooId(ZOO, false);

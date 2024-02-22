@@ -39,6 +39,7 @@ abstract class Animal
             , "dort" => $this->_dort
             , "malade" => $this->_malade
             , "crie" => $this->_crie
+            , "icon" => $this->_icon
         );
     }
     public function manger()

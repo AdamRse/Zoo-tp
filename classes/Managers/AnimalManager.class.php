@@ -46,7 +46,7 @@ class AnimalManager{
         return $q->execute($animal->exportAssoc());
     }
     public function createAnimalEnclosBdd(Animal $animal, Enclos $enclos){
-        $q = $this->_db->prepare("INSERT INTO Animaux (enclos_id, age, poids, taille, name, faim, dort, malade, crie) VALUES(:enclos_id, :age, :poids, :taille, :name, :faim, :dort, :malade, :crie)");
+        $q = $this->_db->prepare("INSERT INTO Animaux (enclos_id, age, poids, taille, name, faim, dort, malade, crie, icon) VALUES(:enclos_id, :age, :poids, :taille, :name, :faim, :dort, :malade, :crie, :icon)");
         $q->execute([
             "enclos_id" => $enclos->getId()
             , "age" => $animal->getAge()
@@ -57,6 +57,7 @@ class AnimalManager{
             , "dort" => $animal->getDort()
             , "malade" => $animal->getMalade()
             , "crie" => $animal->getCrie()
+            , "icon" => $animal->getIcon()
         ]);
     }
 

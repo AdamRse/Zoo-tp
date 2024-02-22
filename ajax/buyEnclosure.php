@@ -13,7 +13,8 @@ if(ZOO){
     if(!empty($_GET['type']) && isset($_GET['px']) && isset($_GET['py'])){
         $zooManager = new Managers\ZooManager($connexion);
         $enclosManager = new Managers\EnclosManager($connexion);
-        if($price = $zooManager->getPrices($_GET['type']) && file_exists(P_ROOT."/classes/Enclos/".$_GET['type'].".class.php")){
+        $price = $zooManager->getPrices($_GET['type']);
+        if($price && file_exists(P_ROOT."/classes/Enclos/".$_GET['type'].".class.php")){
             if($enclosManager->isPosCorrect($_GET['type'], $_GET['px'], $_GET['py'])){
                 $zoo = $zooManager->getZooId(ZOO, false);
                 $zoo->pay($price);

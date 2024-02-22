@@ -15,7 +15,7 @@ if(ZOO){
         $employes[] = $employe->exportAssoc();
     }
     foreach ($zoo->getEnclos() as $enclos1){
-        $enclos[] = array($enclos1->exportAssoc(true));
+        $enclos[] = $enclos1->exportAssoc(true);
     }
     echo json_encode(array("enclos" => $enclos, "employes" => $employes));
 }
