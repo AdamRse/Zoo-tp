@@ -12,14 +12,6 @@ class Zoo {
     protected array $_enclos = [];
     protected $_owner;
 
-    public function AffichageContenueEnclos($enclos)
-    {
-        return $enclos->CaracteristqueEnclos(); 
-    }
-    public function AffichageAnimauxZoo($enclos)
-    {
-        return $enclos->CaracteristqueAnimaux();
-    }
     public function __construct($hydrate = false){
         if(!empty($hydrate) && is_array($hydrate)){
             $this->hydrate($hydrate);
@@ -52,7 +44,15 @@ class Zoo {
             , "entry_price" => $this->_entry_price
         );
     }
-
+    public function AffichageContenueEnclos($enclos)
+    {
+        return $enclos->CaracteristqueEnclos(); 
+    }
+    public function AffichageAnimauxZoo($enclos)
+    {
+        return $enclos->CaracteristqueAnimaux();
+    }
+    
     ////////GETTERS
     public function getId(){
         return $this->_id;

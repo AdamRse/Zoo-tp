@@ -33,4 +33,14 @@ class EmployesManager{
         $q2 = $this->_db->query("SELECT * FROM employe WHERE id = ".$this->_db->lastInsertId());
         return new Employe($q2->fetch());
     }
+    public function save(Employe $employe){
+        $sql = "UPDATE employe SET ";
+        foreach($employe->exportAssoc() as $col => $val){
+            if($col != "id")
+                $sql .= "$col = :$col, ";
+        }
+        $sql = substr($sql, 0, -2)." WHERE id = :id";
+        $q = $this->_db->prepare($sql);
+        return $q->execute($employe->exportAssoc());
+    }
 }

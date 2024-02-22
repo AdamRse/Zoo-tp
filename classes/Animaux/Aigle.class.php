@@ -2,11 +2,13 @@
 namespace Animaux;
 class Aigle extends Animal
 {
-    public function __construct($id, $poids = 0.0150, $taille = 0.10)
+    public function __construct($hydrate = [])
     {
-        parent::__construct($id, $poids, $taille);
         $this->setName("Aigle");
         $this->setCrie("Glatissement");
+        $this->_poids = 0.015;
+        $this->_taille = 0.1;
+        parent::__construct($hydrate);
     }
 
 }
