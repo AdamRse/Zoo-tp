@@ -6,13 +6,13 @@ $employeManager = new \Managers\EmployesManager($connexion);
 $listeAnimal = $animalManager->getAnimalAvailableArray();
 $zoo = $zooManager->getZooId(ZOO);
 ?>
-<div id="divMap" class="relative inline-block w-full overflow-hidden select-none ">
+<div id="divMap" data-color_theme="<?= COLOR_THEME_TW ?>" class="relative inline-block w-full overflow-hidden select-none ">
     <div class="absolute pt-5 pl-7">
-        <i id="btMenu" class="p-2 cursor-pointer  hover:bg-slate-50 hover:ring-2 hover:ring-red-500 ring-offset-4 shadow-<?= COLOR_THEME_TW ?>-700 fa-solid fa-bars text-<?= COLOR_THEME_TW ?>-700 fa-2x"></i>
+        <i id="btMenu" class="p-2 cursor-pointer rounded-full  ring-offset-4 shadow-<?= COLOR_THEME_TW ?>-700 fa-solid fa-bars text-<?= COLOR_THEME_TW ?>-700 fa-2x"></i>
         <?php
         if($zoo->nbEmployes() > 0){
             ?>
-            <i id="btStats" class="p-2 cursor-pointer hover:bg-slate-50 hover:ring-2 hover:ring-red-500 ring-offset-4  fa-regular fa-compass text-<?= COLOR_THEME_TW ?>-700 fa-2x"></i>
+            <i id="btStats" class="p-2 cursor-pointer rounded-full  ring-offset-4  fa-regular fa-compass text-<?= COLOR_THEME_TW ?>-700 fa-2x"></i>
             <?php
         }
         ?>
