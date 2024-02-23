@@ -93,7 +93,7 @@ document.querySelector("#btBuyAnimal").addEventListener("click", () => {//Achete
         let animal = divMenu.querySelector("#selectBuyAnimal").value;
         console.log(animal);
         divMap.querySelectorAll(".elem-enclosure").forEach(div => {
-            div.removeEventListener("click", () => {});
+            div.onclick = "";
             div.addEventListener("click", function(){
                 getFetch("buyAnimal", "name="+animal+"&enclos="+this.dataset.id).then(rt => {
                     console.log(rt);
@@ -113,10 +113,10 @@ document.querySelector("#btBuyAnimal").addEventListener("click", () => {//Achete
 function refreshAll(){
     getFetch("getEnclosEmployeesAnimaux").then((rt) => {
         if(rt.employes)
-        updateDivEmployees(rt.employes)
-    if(rt.enclos)
-    updateAllEnclos(rt.enclos)
-})
+            updateDivEmployees(rt.employes)
+        if(rt.enclos)
+            updateAllEnclos(rt.enclos)
+    });
 }
 function updateDivEmployees(employes){
     let nbEmployees = employes.length;
@@ -144,6 +144,9 @@ function updateAllEnclos(enclosList){
         newDiv.style.top = enclos.posY+"%";
         newDiv.style.left = enclos.posX+"%";
         newDiv.querySelector(".tag-enclos").innerHTML = enclos.type;
+        newDiv.onclick =  function(){
+            window.location.href = "./?s=enclos&enclos=" + this.dataset.id;
+        };
         if(enclos.animaux)
             updateAnimalsEnslos(newDiv, enclos.animaux)
     divMap.appendChild(newDiv);
@@ -157,8 +160,17 @@ function updateAnimalsEnslos(divEnclos, animals){
         newDiv.style.top = 0;
         if(animal.malade > 75 || animal.dort < 25 || animal.faim < 25)
             newDiv.style.background = "#622";
-    divEnclos.appendChild(newDiv);
-});
+        divEnclos.appendChild(newDiv);
+    });
+}
+function run(){
+    getFetch("run").then((rt) => {
+        if(rt.enclos)
+            updateAllEnclos(rt.enclos)
+    });
+    setTimeout(() => {
+        run();
+    }, 5000);
 }
 
 //FONCTION SCRIPT
@@ -176,4 +188,5 @@ function closeMenus(){
     btStats.classList.remove("ring-"+colorTheme+"-700");
 }
 
+//run();
 refreshAll();

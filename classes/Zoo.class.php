@@ -44,6 +44,14 @@ class Zoo {
             , "entry_price" => $this->_entry_price
         );
     }
+    public function getEnclosId($id){
+        $enclos = false;
+        foreach($this->_enclos as $e){
+            if($e->getId() == $id)
+                $enclos = $e;
+        }
+        return $enclos;
+    }
     public function AffichageContenueEnclos($enclos)
     {
         return $enclos->CaracteristqueEnclos(); 

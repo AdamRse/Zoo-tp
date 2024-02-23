@@ -45,6 +45,14 @@ class Enclos
     public function isFree(){
         return sizeof($this->_animal) < $this->_maxAnimaux;
     }
+    public function getAnimalId($id){
+        $animal = false;
+        foreach($this->_animal as $a){
+            if($a->getId() == $id)
+                $animal = $a;
+        }
+        return $animal;
+    }
     public function CaracteristqueEnclos()
     {
         $retour = "Enclos n° $this->_id : ";

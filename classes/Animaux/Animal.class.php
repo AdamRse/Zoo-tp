@@ -122,6 +122,9 @@ abstract class Animal
         }
         return $retour;
     }
+    public function starve($starve = 1){
+        $this->setFaim($this->_faim-$starve);
+    }
 
     // GETTER
     public function getId()
@@ -185,6 +188,8 @@ abstract class Animal
     }
     public function setFaim($_faim)
     {
+        if($_faim < 0) $_faim = 0;
+        if($_faim > 100) $_faim = 100;
         $this->_faim = $_faim;
     }
     public function setTaille($taille)
