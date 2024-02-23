@@ -67,3 +67,6 @@ if(!empty($_GET['a']) && $_GET['a'] == "feed" && !empty($_GET['id'])){
     }
     ?>
 </div>
+<div class="w-28 text-center text-2xl m-5 p-5 rounded-xl font-bold text-<?= COLOR_THEME_TW ?>-700 flex justify-start items-center">
+    <a href="/">Retour</a>
+</div>
