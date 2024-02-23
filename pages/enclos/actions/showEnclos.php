@@ -26,9 +26,22 @@ if(!empty($_GET['a']) && $_GET['a'] == "feed" && !empty($_GET['id'])){
                 <img src="<?= P_ICON_ANIMAUX.$animal->getIcon() ?>" class="max-h-10 max-w-10"/>
                 <span class="ml-5"><?= $animal->getName() ?></span>
             </div>
-            <div>
-                <a href="?s=enclos&enclos=<?= $enclos->getId() ?>&a=feed&id=<?= $animal->getId() ?>" class="text-center <?= COLOR_THEME_BT ?>">Nourrir</a>
-            </div>
+            <?php
+            if(sizeof($zoo->getEmployes()) > 0){
+                ?>
+                <div class="py-5 border-b border-<?= COLOR_THEME_TW ?>-700">
+                    <a href="?s=enclos&enclos=<?= $enclos->getId() ?>&a=feed&id=<?= $animal->getId() ?>" class="text-center p-2 <?= COLOR_THEME_BT ?>">Nourrir</a>
+                </div>
+                <?php
+            }
+            else{
+                ?>
+                <div>
+                    You need to buy a ZooKeeper to unlock actions
+                </div>
+                <?php
+            }
+            ?>
             <div class="p-2 flex justify-between">
                 <div>Age</div>
                 <div class="font-bold"><?= $animal->getAge() ?></div>
@@ -53,4 +66,7 @@ if(!empty($_GET['a']) && $_GET['a'] == "feed" && !empty($_GET['id'])){
         <?php
     }
     ?>
+</div>
+<div class="w-28 text-center text-2xl m-5 p-5 rounded-xl font-bold text-<?= COLOR_THEME_TW ?>-700 flex justify-start items-center">
+    <a href="/">Retour</a>
 </div>
